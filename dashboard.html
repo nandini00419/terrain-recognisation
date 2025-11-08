@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Terrain Recognition</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Terrain Recognition Dashboard</h1>
+            <nav class="dashboard-nav">
+                <a href="/" class="nav-link">🏠 Home</a>
+                <a href="/dashboard" class="nav-link active">📊 Dashboard</a>
+                <a href="/history" class="nav-link">📜 History</a>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Statistics Cards -->
+            <div class="stats-grid">
+                <div class="stat-card animate-fade-in" style="animation-delay: 0.1s">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-content">
+                        <h3>Total Predictions</h3>
+                        <p class="stat-value" id="totalPredictions">{{ stats.total_predictions }}</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card animate-fade-in" style="animation-delay: 0.2s">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-content">
+                        <h3>Model Accuracy</h3>
+                        <p class="stat-value" id="modelAccuracy">{{ stats.model_accuracy }}%</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card animate-fade-in" style="animation-delay: 0.3s">
+                    <div class="stat-icon">🌍</div>
+                    <div class="stat-content">
+                        <h3>Terrain Classes</h3>
+                        <p class="stat-value" id="terrainClasses">{{ stats.terrain_classes }}</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card animate-fade-in" style="animation-delay: 0.4s">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-content">
+                        <h3>Avg Confidence</h3>
+                        <p class="stat-value" id="avgConfidence">{{ stats.avg_confidence }}%</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="charts-section">
+                <div class="chart-container animate-slide-up" style="animation-delay: 0.5s">
+                    <h2>Terrain Distribution</h2>
+                    <canvas id="terrainChart"></canvas>
+                </div>
+                
+                <div class="chart-container animate-slide-up" style="animation-delay: 0.6s">
+                    <h2>Confidence Distribution</h2>
+                    <canvas id="confidenceChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Model Performance -->
+            <div class="performance-section animate-slide-up" style="animation-delay: 0.7s">
+                <h2>Model Performance Metrics</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h4>Training Accuracy</h4>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: {{ stats.training_accuracy }}%">
+                                <span>{{ stats.training_accuracy }}%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Validation Accuracy</h4>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: {{ stats.validation_accuracy }}%">
+                                <span>{{ stats.validation_accuracy }}%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Training Loss</h4>
+                        <div class="progress-bar-container loss">
+                            <div class="progress-bar loss" style="width: {{ (1 - stats.training_loss) * 100 }}%">
+                                <span>{{ stats.training_loss }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Validation Loss</h4>
+                        <div class="progress-bar-container loss">
+                            <div class="progress-bar loss" style="width: {{ (1 - stats.validation_loss) * 100 }}%">
+                                <span>{{ stats.validation_loss }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Predictions -->
+            <div class="recent-section animate-slide-up" style="animation-delay: 0.8s">
+                <h2>Recent Predictions</h2>
+                <div class="predictions-list" id="recentPredictions">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by TensorFlow/Keras & Flask</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
+

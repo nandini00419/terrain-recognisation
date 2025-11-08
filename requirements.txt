@@ -1,0 +1,21 @@
+# Deep Learning Terrain Recognition System
+# Python 3.10+
+
+# Deep Learning Framework
+tensorflow>=2.15.0
+
+# Web Framework
+Flask>=3.0.0
+Werkzeug>=3.0.0
+
+# Image Processing
+Pillow>=10.0.0
+opencv-python>=4.8.0
+numpy>=1.24.0
+
+# Utilities
+matplotlib>=3.7.0
+
+# Optional: For better performance
+# tensorflow-gpu>=2.15.0  # Uncomment if you have GPU support
+

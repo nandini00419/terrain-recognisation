@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction History - Terrain Recognition</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📜 Prediction History</h1>
+            <nav class="dashboard-nav">
+                <a href="/" class="nav-link">🏠 Home</a>
+                <a href="/dashboard" class="nav-link">📊 Dashboard</a>
+                <a href="/history" class="nav-link active">📜 History</a>
+            </nav>
+        </header>
+
+        <main>
+            <div class="history-section">
+                <div class="history-controls">
+                    <input type="text" id="searchInput" placeholder="Search by terrain type..." class="search-input">
+                    <select id="filterSelect" class="filter-select">
+                        <option value="all">All Terrain Types</option>
+                        <option value="forest">Forest</option>
+                        <option value="mountain">Mountain</option>
+                        <option value="plain">Plain</option>
+                        <option value="desert">Desert</option>
+                        <option value="urban">Urban</option>
+                        <option value="water">Water</option>
+                    </select>
+                </div>
+                
+                <div class="history-list" id="historyList">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by TensorFlow/Keras & Flask</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/history.js') }}"></script>
+</body>
+</html>
+

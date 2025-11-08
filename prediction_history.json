@@ -1,0 +1,30 @@
+[
+  {
+    "class": "plain",
+    "confidence": 1.0,
+    "confidence_percent": 100.0,
+    "emoji": "\ud83c\udf3e",
+    "image_url": "/static/uploads/0006_t.png",
+    "top_predictions": [
+      {
+        "class": "plain",
+        "confidence": 1.0,
+        "confidence_percent": 100.0,
+        "emoji": "\ud83c\udf3e"
+      },
+      {
+        "class": "forest",
+        "confidence": 3.1006566203473085e-09,
+        "confidence_percent": 0.0,
+        "emoji": "\ud83c\udf32"
+      },
+      {
+        "class": "mountain",
+        "confidence": 1.0236979042232974e-09,
+        "confidence_percent": 0.0,
+        "emoji": "\u26f0\ufe0f"
+      }
+    ],
+    "timestamp": "2025-11-08T11:08:40.709302"
+  }
+]

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terrain Recognition System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌍 Terrain Recognition System</h1>
+            <p class="subtitle">Upload an image to classify terrain type using Deep Learning</p>
+            <nav class="dashboard-nav">
+                <a href="/" class="nav-link active">🏠 Home</a>
+                <a href="/dashboard" class="nav-link">📊 Dashboard</a>
+                <a href="/history" class="nav-link">📜 History</a>
+            </nav>
+        </header>
+
+        <main>
+            <div class="upload-section">
+                <form action="/predict" method="POST" enctype="multipart/form-data" id="uploadForm">
+                    <div class="upload-area" id="uploadArea">
+                        <input type="file" name="file" id="fileInput" accept="image/*" required>
+                        <div class="upload-placeholder">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            <p>Click to upload or drag and drop</p>
+                            <p class="hint">PNG, JPG, JPEG, GIF, BMP (Max 16MB)</p>
+                        </div>
+                        <div class="preview-container" id="previewContainer" style="display: none;">
+                            <img id="previewImage" src="" alt="Preview">
+                            <button type="button" class="remove-btn" id="removeBtn">×</button>
+                        </div>
+                    </div>
+                    <button type="submit" class="predict-btn" id="predictBtn">Predict Terrain</button>
+                </form>
+            </div>
+
+            <div class="info-section">
+                <h2>Supported Terrain Types</h2>
+                <div class="terrain-grid">
+                    <div class="terrain-card">
+                        <span class="emoji">🏜️</span>
+                        <span>Desert</span>
+                    </div>
+                    <div class="terrain-card">
+                        <span class="emoji">🌲</span>
+                        <span>Forest</span>
+                    </div>
+                    <div class="terrain-card">
+                        <span class="emoji">⛰️</span>
+                        <span>Mountain</span>
+                    </div>
+                    <div class="terrain-card">
+                        <span class="emoji">🌾</span>
+                        <span>Plain</span>
+                    </div>
+                    <div class="terrain-card">
+                        <span class="emoji">🏙️</span>
+                        <span>Urban</span>
+                    </div>
+                    <div class="terrain-card">
+                        <span class="emoji">🌊</span>
+                        <span>Water</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by TensorFlow/Keras & Flask</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
+

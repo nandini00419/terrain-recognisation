@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result - Terrain Recognition</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌍 Terrain Recognition Result</h1>
+            <nav class="dashboard-nav">
+                <a href="/" class="nav-link">🏠 Home</a>
+                <a href="/dashboard" class="nav-link">📊 Dashboard</a>
+                <a href="/history" class="nav-link">📜 History</a>
+            </nav>
+        </header>
+
+        <main>
+            {% if error %}
+                <div class="error-message">
+                    <h2>⚠️ Error</h2>
+                    <p>{{ error }}</p>
+                    <a href="/" class="btn-primary">Try Again</a>
+                </div>
+            {% else %}
+                <div class="result-section">
+                    <div class="image-container">
+                        {% if image_url %}
+                            <img src="{{ image_url }}" alt="Uploaded terrain image" id="resultImage">
+                        {% endif %}
+                    </div>
+
+                    <div class="prediction-container">
+                        <div class="prediction-main">
+                            <h2>Predicted Terrain</h2>
+                            <div class="prediction-card primary">
+                                <span class="terrain-emoji">{{ predicted_emoji }}</span>
+                                <h3>{{ predicted_class|title }}</h3>
+                                <div class="confidence-bar">
+                                    <div class="confidence-fill" style="width: {{ confidence_percent|int }}%"></div>
+                                </div>
+                                <p class="confidence-text">{{ confidence_percent }}% confidence</p>
+                            </div>
+                        </div>
+
+                        {% if top_predictions %}
+                            <div class="prediction-secondary">
+                                <h3>Top 3 Predictions</h3>
+                                <div class="predictions-list">
+                                    {% for pred in top_predictions %}
+                                        <div class="prediction-item">
+                                            <span class="pred-emoji">{{ pred.emoji }}</span>
+                                            <span class="pred-class">{{ pred.class|title }}</span>
+                                            <div class="confidence-bar small">
+                                                <div class="confidence-fill" style="width: {{ (pred.confidence * 100)|int }}%"></div>
+                                            </div>
+                                            <span class="pred-confidence">{{ pred.confidence_percent }}%</span>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <a href="/" class="btn-primary">Upload Another Image</a>
+                </div>
+            {% endif %}
+        </main>
+
+        <footer>
+            <p>Powered by TensorFlow/Keras & Flask</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/result.js') }}"></script>
+</body>
+</html>
+
